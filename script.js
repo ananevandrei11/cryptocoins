@@ -36,19 +36,15 @@ const FUT_API = 'https://fapi.binance.com';
 const FUT_STREAM = 'wss://fstream.binance.com/ws/';
 let addStreamCandles = null;
 let addStremTrades = null;
-
 const coins = document.getElementById('coins');
 const intervals = document.getElementById('intervals');
 const tradesListElement = document.getElementById('tradeList');
-
 
 function changeCoinAndInterval(elem) {
   elem.addEventListener('change', () => {
     addStreamCandles.close();
     addStremTrades.close();
-  
     tradesListElement.innerHTML = '';
-  
     let newPair = coins.value;
     let newInterval = intervals.value;
     setHistoryCoins(newPair, newInterval);
@@ -58,7 +54,6 @@ function changeCoinAndInterval(elem) {
 }
 changeCoinAndInterval(coins);
 changeCoinAndInterval(intervals);
-
 setHistoryCoins(coins.value, intervals.value);
 setStreamCoins(coins.value, intervals.value);
 setStreamTrade(coins.value);
@@ -113,7 +108,6 @@ function setStreamTrade(pair) {
       <span>${quantity}</span>
       <span>${(price * quantity).toFixed(2)}</span>
     `;
-
     tradesListElement.prepend(tradeELem);
     if (tradesListElement.children.length > 10) {
       tradesListElement.children[tradesListElement.children.length - 1].remove();
